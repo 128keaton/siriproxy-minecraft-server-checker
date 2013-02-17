@@ -12,11 +12,18 @@ require 'sockit'
 
 class SiriProxy::Plugin::MCS < SiriProxy::Plugin
 
-  listen_for /check server/i do
-   
-    say "Checking minecraft server" 
 
-      s = TCPSocket.open("mc.keatonburleson.com", "25565")
+   def initialize(config = {})
+   
+     @server = config["server"]
+   
+   end
+
+  listen_for /check(?: minecraft)? server/i do
+   
+    say "Checking #{@server}" 
+
+      s = TCPSocket.open(@server, "25565")
 	s.puts "\xFE\x01"
    	 repl = s.gets
     	s.close
