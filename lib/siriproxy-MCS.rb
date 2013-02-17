@@ -19,7 +19,7 @@ class SiriProxy::Plugin::MCS < SiriProxy::Plugin
    
    end
 
-  listen_for /fetch the motto of the day/i do
+  listen_for /get the motto of the day/i do
    
     say "Checking #{@server}" 
 
