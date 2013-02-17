@@ -4,11 +4,11 @@ $:.push File.expand_path("../lib", __FILE__)
 Gem::Specification.new do |s|
   s.name        = "siriproxy-mcs"
   s.version     = "0.0.5" 
-  s.authors     = ["plamoni"]
+  s.authors     = ["128keaton"]
   s.email       = [""]
   s.homepage    = ""
-  s.summary     = %q{An Example Siri Proxy Plugin}
-  s.description = %q{This is a "hello world" style plugin. It simply intercepts the phrase "text siri proxy" and responds with a message about the proxy being up and running. This is good base code for other plugins. }
+  s.summary     = %q{A ruby minecraft status checker for SiriProxy}
+  s.description = %q{Commands: Fetch the motto of the day, fetches MOTD. Check minecraft server, fetches info: players, version. }
 
   s.rubyforge_project = "siriproxy-example"
 
