@@ -19,6 +19,32 @@ class SiriProxy::Plugin::MCS < SiriProxy::Plugin
    
    end
 
+  listen_for /fetch the motto of the day/i do
+   
+    say "Checking #{@server}" 
+
+      s = TCPSocket.open(@server, "25565")
+	s.puts "\xFE\x01"
+   	 repl = s.gets
+    	s.close
+   
+qstring = repl[3,repl.length].force_encoding("utf-16be").encode("utf-8")
+      qarray = qstring.split("\0")
+      qdict = {}
+      qdict[:pversion] = qarray[1]
+      $version = qarray[2]
+      qdict[:sversion] = qarray[2]
+      qdict[:motd] = qarray[3]
+      $players = qarray[4]
+      $max = qarray[5]
+       $motd = qarray[3]
+      qdict[:players] = {:online => qarray[4], :max => qarray[5]}
+     	
+ 	 say "The motto of the day is: #{$motd}."
+   request_completed
+end
+
+
   listen_for /check(?: minecraft)? server/i do
    
     say "Checking #{@server}" 
